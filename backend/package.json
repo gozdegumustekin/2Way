@@ -1,0 +1,15 @@
+{
+  "name": "2way-payments",
+  "version": "1.0.0",
+  "private": true,
+  "description": "2WAY one-time payment backend (Stripe Checkout)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "stripe": "^16.2.0"
+  }
+}

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2WAY Learning - Pricing</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">2WAY</a>
+
+      <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+
+      <nav class="nav" data-nav>
+        <a class="nav__link" href="index.html">Home</a>
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link" href="contact.html">Contact</a>
+        <a class="nav__link" href="learn.html">Learn</a>
+        <a class="btn btn--primary navCta" href="auth.html#register">Enroll</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <span class="pill">Pricing</span>
+          <h1 class="hero__title">Choose your plan</h1>
+          <p class="hero__desc">
+            Start for free, explore the platform with a trial, or go premium for the full experience.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#plans">View plans</a>
+            <a class="btn btn--ghost" href="auth.html#register">Create account</a>
+          </div>
+        </div>
+
+        <div class="hero__media card card--glass">
+          <div class="mediaBox">
+            <!-- optional visual -->
+            <img class="mediaBox__img" src="assets/img/pricing.png" alt="Pricing visual" />
+          </div>
+          <div class="muted small">If you don’t have pricing.png, remove the img line.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANS -->
+    <section class="section" id="plans">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 class="h2">Plans</h2>
+          <p class="muted">Pricing is provisional and can be updated later.</p>
+        </div>
+
+        <div class="grid grid--3">
+          <!-- FREE -->
+          <article class="card">
+            <div class="planTop">
+              <h3 class="h3">Free Version</h3>
+              <div class="price muted">£0</div>
+            </div>
+            <p class="muted">Best for getting started and trying basic matching.</p>
+
+            <ul class="bullets">
+              <li>Includes ads</li>
+              <li>Data protection</li>
+              <li>Fixed interface</li>
+              <li>Limited match proposals</li>
+            </ul>
+
+            <div class="card__footer planCtas">
+              <a class="btn btn--primary" href="free-version.html">Try</a>
+              <a class="btn btn--ghost" href="auth.html#register">Start</a>
+            </div>
+          </article>
+
+          <!-- TRIAL -->
+          <article class="card card--accent">
+            <div class="planTop">
+              <h3 class="h3">Free Trial <span class="tag" style="margin-left:8px">New users only</span></h3>
+              <div class="price muted">£0</div>
+            </div>
+            <p class="muted">Explore advanced features before deciding.</p>
+
+            <ul class="bullets">
+              <li>Includes ads</li>
+              <li>Data protection</li>
+              <li>Advanced search filters</li>
+              <li>Unlimited match proposals</li>
+            </ul>
+
+            <div class="card__footer planCtas">
+              <a class="btn btn--primary" href="free-trial.html">Try</a>
+              <a class="btn btn--ghost" href="auth.html#register">Start</a>
+            </div>
+          </article>
+
+          <!-- PREMIUM -->
+          <article class="card">
+            <div class="planTop">
+              <h3 class="h3">Premium Version</h3>
+              <div class="price">
+                <span class="price__main">£20</span>
+                <span class="muted small">/ subscription</span>
+              </div>
+            </div>
+            <p class="muted">Designed for serious learners who want the full experience.</p>
+
+            <ul class="bullets">
+              <li>Ad-free</li>
+              <li>Data protection</li>
+              <li>Progress tracker</li>
+              <li>Verified badge</li>
+              <li>Unlimited match proposals</li>
+            </ul>
+
+            <div class="card__footer planCtas">
+              <a class="btn btn--primary" href="premium.html">Try</a>
+              <a class="btn btn--ghost" href="auth.html#register">Start</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="card card--glass" style="margin-top:14px">
+          <h3 class="h3">Notes</h3>
+          <p class="muted">
+            Premium pricing is currently set to <b>£20</b> as a placeholder.
+            You can update billing details, trial duration, and terms later.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bottom">
+      <span class="muted small">© 2WAY Learning</span>
+      <div class="social">
+        <a href="https://instagram.com/2waylearning" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

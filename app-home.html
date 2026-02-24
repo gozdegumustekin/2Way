@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2WAY Learning - App Home</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">2WAY</a>
+      <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="nav" data-nav>
+        <a class="nav__link" href="choose-plan.html">Plans</a>
+        <a class="nav__link" href="index.html">Marketing site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <!-- ✅ TRIAL BANNER: buraya geliyor (kartın üstüne) -->
+        <div id="trialBanner" class="card card--accent" style="display:none; margin-bottom:14px;">
+          <h3 class="h3">Free Trial</h3>
+          <p class="muted">
+            <span id="trialText">30 days left in your trial</span>
+          </p>
+
+          <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn--ghost" href="choose-plan.html">Manage plan</a>
+            <a class="btn btn--primary" href="payment.html">Upgrade to Premium (£20)</a>
+          </div>
+        </div>
+
+        <!-- mevcut kartın aynı kalıyor -->
+        <div class="card card--glass">
+          <h2 class="h2">You're signed in ✅</h2>
+          <p class="muted">This is a placeholder “app home”. Later you can replace this with real app screens.</p>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn--primary" href="choose-plan.html">Change plan</a>
+            <a class="btn btn--ghost" href="index.html">Back to site</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bottom">
+      <span class="muted small">© 2WAY Learning</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+  <!-- ✅ TRIAL LOGIC: body kapanmadan hemen önce -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const plan = params.get("plan");
+
+    const banner = document.getElementById("trialBanner");
+    const text = document.getElementById("trialText");
+
+    const TRIAL_DAYS = 30;
+
+    // Eğer kullanıcı Trial seçerek geldiyse ve daha önce trial başlamadıysa başlat
+    if (plan === "trial") {
+      if (!localStorage.getItem("trialStart")) {
+        localStorage.setItem("trialStart", String(Date.now()));
+      }
+    }
+
+    const start = localStorage.getItem("trialStart");
+
+    // Trial başladıysa banner göster
+    if (start) {
+      const startDate = new Date(parseInt(start, 10));
+      const now = new Date();
+
+      const diffMs = now - startDate;
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      const daysLeft = TRIAL_DAYS - diffDays;
+
+      banner.style.display = "block";
+
+      if (daysLeft > 1) {
+        text.textContent = daysLeft + " days left in your trial";
+      } else if (daysLeft === 1) {
+        text.textContent = "1 day left in your trial";
+      } else {
+        text.textContent = "Trial expired";
+      }
+    }
+  </script>
+</body>
+</html>

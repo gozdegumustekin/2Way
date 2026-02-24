@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>2WAY Learning - Login / Register</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <a class="brand" href="index.html">2WAY</a>
+
+            <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+
+            <nav class="nav" data-nav>
+                <a class="nav__link" href="index.html">Home</a>
+                <a class="nav__link" href="about.html">About</a>
+                <a class="nav__link" href="contact.html">Contact</a>
+                <a class="nav__link" href="learn.html">Learn</a>
+                <a class="btn btn--primary navCta" href="auth.html">Enroll</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <div class="sectionHead">
+                    <h2 class="h2">Welcome to 2WAY</h2>
+                    <p class="muted">Create an account or sign in to start practicing.</p>
+                </div>
+
+                <div class="grid grid--2">
+                    <!-- REGISTER -->
+                    <form id="register" class="card form" action="#" method="post">
+                        <h3 class="h3">Register</h3>
+
+                        <label class="field">
+                            <span class="field__label">Full name</span>
+                            <input class="field__input" type="text" name="name" placeholder="Your name" />
+                        </label>
+
+                        <label class="field" style="margin-top:12px">
+                            <span class="field__label">Email</span>
+                            <input class="field__input" type="email" name="email" placeholder="you@example.com" />
+                        </label>
+
+                        <label class="field" style="margin-top:12px">
+                            <span class="field__label">Password</span>
+                            <input class="field__input" type="password" name="password"
+                                placeholder="Create a password" />
+                        </label>
+
+                        <div style="margin-top:14px">
+                            <button class="btn btn--primary" type="submit">Create account</button>
+                            <span class="muted small" style="margin-left:10px">Placeholder only</span>
+                        </div>
+                    </form>
+
+                    <!-- LOGIN -->
+                    <form class="card form" action="#" method="post">
+                        <h3 class="h3">Login</h3>
+
+                        <label class="field">
+                            <span class="field__label">Email</span>
+                            <input class="field__input" type="email" name="email" placeholder="you@example.com" />
+                        </label>
+
+                        <label class="field" style="margin-top:12px">
+                            <span class="field__label">Password</span>
+                            <input class="field__input" type="password" name="password" placeholder="Your password" />
+                        </label>
+
+                        <div style="margin-top:14px">
+                            <button class="btn btn--primary" type="submit">Sign in</button>
+                            <a class="btn btn--ghost" href="free-version.html" style="margin-left:8px">Back</a>
+                        </div>
+
+                        <p class="muted small" style="margin-top:12px">
+                            This page is UI-only for now. Later we can connect it to a backend.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__bottom">
+            <span class="muted small">© 2WAY Learning</span>
+            <div class="social">
+                <a href="https://instagram.com/2waylearning" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Demo-only: Simulate successful register/login and redirect to choose plan
+        const forms = document.querySelectorAll("form.form");
+        forms.forEach(f => {
+            f.addEventListener("submit", (e) => {
+                e.preventDefault();
+                window.location.href = "choose-plan.html";
+            });
+        });
+    </script>
+
+</body>
+
+</html>

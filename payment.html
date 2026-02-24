@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2WAY Learning - Payment</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">2WAY</a>
+      <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="nav" data-nav>
+        <a class="nav__link" href="choose-plan.html">Plans</a>
+        <a class="btn btn--primary navCta" href="auth.html#register">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="sectionHead">
+          <h2 class="h2">Premium checkout</h2>
+          <p class="muted">Real payment via Stripe Checkout (one-time £20).</p>
+        </div>
+
+        <div class="grid grid--2">
+          <article class="card">
+            <h3 class="h3">Order summary</h3>
+            <p class="muted">Premium Version (one-time purchase)</p>
+
+            <div class="card card--glass" style="margin-top:10px">
+              <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;">
+                <span class="muted">Total</span>
+                <span style="font-weight:900;font-size:22px;">£20</span>
+              </div>
+
+              <p class="muted small" style="margin-top:10px">
+                Placeholder amount. You can edit details later.
+              </p>
+            </div>
+          </article>
+
+          <article class="card card--accent">
+            <h3 class="h3">Payment</h3>
+            <p class="muted">
+              Click Pay to continue to a secure Stripe checkout page. Card details are handled by Stripe.
+            </p>
+
+            <div class="card__footer" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <button id="payBtn" class="btn btn--primary" type="button">Pay £20</button>
+              <a class="btn btn--ghost" href="choose-plan.html">Back to plans</a>
+            </div>
+
+            <p id="payStatus" class="muted small" style="margin-top:10px;"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bottom">
+      <span class="muted small">© 2WAY Learning</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    const payBtn = document.getElementById("payBtn");
+    const payStatus = document.getElementById("payStatus");
+
+    // canceled mesajı
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("canceled") === "1") {
+      payStatus.textContent = "Payment canceled. You can try again.";
+    }
+
+    payBtn.addEventListener("click", async () => {
+      try {
+        payStatus.textContent = "Redirecting to secure checkout...";
+        payBtn.disabled = true;
+
+        const res = await fetch("http://localhost:4242/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" }
+        });
+
+        const data = await res.json();
+        if (!data.url) throw new Error(data.error || "No checkout URL returned");
+
+        window.location.href = data.url;
+      } catch (e) {
+        payStatus.textContent = "Payment error: " + e.message;
+        payBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
