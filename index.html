@@ -6,6 +6,50 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>2WAY Learning - Home</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .hero-search-box {
+      display: flex;
+      background: #fff;
+      padding: 8px;
+      border-radius: 50px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin: 20px 0;
+      max-width: 500px;
+      gap: 10px;
+    }
+    .hero-search-box select, .hero-search-box input {
+      border: none;
+      padding: 10px;
+      background: transparent;
+      outline: none;
+      font-size: 1rem;
+    }
+    .hero-search-box select {
+      border-right: 1px solid #eee;
+      color: #555;
+    }
+    .hero-search-box input {
+      flex: 1;
+    }
+    .hero-search-box button {
+      border-radius: 50px;
+      padding: 10px 25px;
+    }
+    @media (max-width: 600px) {
+      .hero-search-box {
+        flex-direction: column;
+        border-radius: 10px;
+      }
+      .hero-search-box select {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+      }
+      .hero-search-box button {
+        border-radius: 10px;
+        margin-top: 5px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -17,7 +61,6 @@
 
       <nav class="nav" data-nav>
         <a class="nav__link is-active" href="index.html">Home</a>
-        <a class="nav__link" href="about.html">About</a>
         <a class="nav__link" href="contact.html">Contact</a>
         <a class="nav__link" href="learn.html">Learn</a>
         <a class="nav__link" href="pricing.html">Pricing</a>
@@ -26,7 +69,6 @@
   </header>
 
   <main>
-    <!-- HERO -->
     <section class="hero">
       <div class="container hero__grid">
         <div>
@@ -36,22 +78,29 @@
             Practice languages with native speakers through skill exchange. Affordable, flexible, and fully online.
           </p>
 
+          <form class="hero-search-box" action="learn.html" method="GET">
+            <select name="type" aria-label="Search Type">
+              <option value="language">Language</option>
+              <option value="user">User</option>
+              <option value="course">Course</option>
+            </select>
+            <input type="text" name="q" placeholder="What do you want to learn?" required />
+            <button type="submit" class="btn btn--primary">Search</button>
+          </form>
+
           <div class="hero__actions">
-            <a class="btn btn--primary" href="learn.html">Learn more</a>
             <a class="btn btn--ghost" href="#how">How it works</a>
           </div>
         </div>
 
         <div class="hero__media card card--glass">
           <div class="mediaBox">
-            <!-- TODO: kendi görselini koy -->
             <img class="mediaBox__img" src="assets/img/2waylogo.png" alt="App preview (placeholder)" />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PRICING -->
     <section class="section">
       <div class="container">
         <div class="sectionHead">
@@ -89,7 +138,6 @@
       </div>
     </section>
 
-    <!-- FEATURES -->
     <section class="section">
       <div class="container">
         <div class="sectionHead">
@@ -99,73 +147,71 @@
 
         <div class="grid grid--2">
           <article class="card card--row">
-            <img class="iconImg" src="assets/img/feature-1.png" alt="" />
             <div>
               <h3 class="h3">Practice with real people.</h3>
-              <p class="muted">Improve your speaking skills through real conversations with native speakers, not
-                textbooks.</p>
+              <p class="muted">Improve your speaking skills through real conversations with native speakers, not textbooks.</p>
             </div>
           </article>
 
           <article class="card card--row">
-            <img class="iconImg" src="assets/img/feature-2.png" alt="" />
             <div>
               <h3 class="h3">Safe &amp; Moderated Community</h3>
-              <p class="muted">Verified profiles, reporting tools, and active moderation to keep conversations
-                respectful and secure.</p>
+              <p class="muted">Verified profiles, reporting tools, and active moderation to keep conversations respectful and secure.</p>
             </div>
           </article>
         </div>
 
-        <div class="promise">
-          <div class="promise__title">Our Promise</div>
-          <ul class="bullets">
-            <li>Affordable language learning</li>
-            <li>Human connection</li>
-            <li>Safe environment</li>
-            <li>Cultural exchange</li>
-            <li>Sustainable &amp; digital</li>
-          </ul>
+        <div style="display: flex; justify-content: center; width: 100%; margin: 40px 0;">
+          <div class="promise" style="text-align: center; display: flex; flex-direction: column; align-items: center; max-width: 400px; padding: 20px; background: rgba(0,0,0,0.03); border-radius: 12px;">
+            <div class="promise__title" style="margin-bottom: 15px; font-weight: bold; font-size: 1.2rem;">Our Promise</div>
+            <ul class="bullets" style="text-align: left; margin: 0; padding-left: 20px;">
+              <li>Affordable language learning</li>
+              <li>Human connection</li>
+              <li>Safe environment</li>
+              <li>Cultural exchange</li>
+              <li>Sustainable &amp; digital</li>
+            </ul>
+          </div>
         </div>
 
         <div class="grid grid--3" style="margin-top:18px">
           <article class="card">
-            <img class="thumb" src="assets/img/thumb-1.png" alt="" />
+            <img class="thumb" src="assets/img/realconv.jpg" alt="" />
             <h3 class="h3">Real Conversations, Real Progress</h3>
             <p class="muted">Schedule online sessions, practice weekly, and track your language improvement over time.
             </p>
           </article>
 
           <article class="card">
-            <img class="thumb" src="assets/img/thumb-2.png" alt="" />
+            <img class="thumb" src="assets/img/indir.jpg" alt="" />
             <h3 class="h3">Global Language Community</h3>
             <p class="muted">Connect with language learners from around the world. Practice with native speakers, share
               cultures, and improve together.</p>
           </article>
 
           <article class="card">
-            <img class="thumb" src="assets/img/thumb-3.png" alt="" />
+            <img class="thumb" src="assets/img/aipjoto.jpeg" alt="" />
             <h3 class="h3">Smart Language Matching</h3>
             <p class="muted">Get matched with the right partner based on your language level, learning goals, and
               availability.</p>
           </article>
 
           <article class="card">
-            <img class="thumb" src="assets/img/thumb-4.png" alt="" />
+            <img class="thumb" src="assets/img/native.jpg" alt="" />
             <h3 class="h3">Learn with Native Speakers</h3>
             <p class="muted">Practice real conversations with native speakers and improve your pronunciation, fluency,
               and confidence naturally.</p>
           </article>
 
           <article class="card">
-            <img class="thumb" src="assets/img/thumb-5.png" alt="" />
+            <img class="thumb" src="assets/img/italki - Best language learning app with certificated tutors.jpg" alt="" />
             <h3 class="h3">High-Quality Conversations</h3>
             <p class="muted">Focus on meaningful discussions, real topics, and practical language use instead of
               memorizing textbooks.</p>
           </article>
 
           <article class="card">
-            <img class="thumb" src="assets/img/thumb-6.png" alt="" />
+            <img class="thumb" src="assets/img/pcphoto.jpeg" alt="" />
             <h3 class="h3">Practice Anytime, Anywhere</h3>
             <p class="muted">Join language exchange sessions from any device, wherever you are. Flexible scheduling that
               fits your daily routine.</p>
@@ -174,7 +220,6 @@
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
     <section class="section" id="how">
       <div class="container">
         <div class="sectionHead">
@@ -217,7 +262,6 @@
       </div>
     </section>
 
-    <!-- WHY -->
     <section class="section">
       <div class="container">
         <div class="why card card--glass">

@@ -3,235 +3,255 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>2WAY Learning - Home</title>
+  <title>2WAY Learning - Find Partners & Courses</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .searchResultsSection {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .search-empty {
+      text-align: center;
+      padding: 28px;
+    }
+
+    .search-empty .h3 {
+      margin-bottom: 8px;
+    }
+
+    .hero-search-box {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      max-width: 760px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .hero-search-box select,
+    .hero-search-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+      padding: 18px 20px;
+    }
+
+    .hero-search-box select {
+      min-width: 140px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .hero-search-box input {
+      flex: 1;
+      color: #222;
+    }
+
+    .hero-search-box .btn {
+      border-radius: 999px;
+      margin: 8px;
+      padding: 14px 28px;
+      border: none;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .user-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 999px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .hidden-card {
+      display: none !important;
+    }
+
+    .result-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .result-type {
+      display: inline-block;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #fff;
+      text-transform: capitalize;
+    }
+
+    .result-highlight {
+      color: #b9c3ff;
+    }
+  </style>
 </head>
 
 <body>
   <header class="header">
     <div class="container header__inner">
       <a class="brand" href="index.html">2WAY</a>
-
       <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
-
       <nav class="nav" data-nav>
         <a class="nav__link" href="index.html">Home</a>
-        <a class="nav__link" href="about.html">About</a>
         <a class="nav__link" href="contact.html">Contact</a>
         <a class="nav__link is-active" href="learn.html">Learn</a>
+        <a class="nav__link" href="pricing.html">Pricing</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container hero__grid">
-        <div>
-          <span class="pill">Pilot Launching with student communities</span>
-          <h1 class="hero__title">Swap Languages. Learn Faster.</h1>
-          <p class="hero__desc">
-            Practice languages with native speakers through skill exchange. Affordable, flexible, and fully online.
-          </p>
+    <section class="search-section">
+      <div class="container">
+        <h1 class="h2" style="text-align: center; margin-bottom: 20px;">What do you want to learn today?</h1>
+        
+        <form class="hero-search-box" id="searchForm" action="#" method="GET">
+          <select id="searchType" name="type" aria-label="Search Type">
+            <option value="all">All</option>
+            <option value="language">Language</option>
+            <option value="user">User</option>
+            <option value="course">Course</option>
+          </select>
+          <input id="searchInput" type="text" name="q" placeholder="e.g. Spanish, John Doe, Beginner English..." />
+          <button id="searchBtn" type="submit" class="btn btn--primary">Search</button>
+        </form>
 
-          <div class="hero__actions">
-            <a class="btn btn--primary" href="learn.html">Learn more</a>
-            <a class="btn btn--ghost" href="#how">How it works</a>
-          </div>
-        </div>
-
-        <div class="hero__media card card--glass">
-          <div class="mediaBox">
-            <!-- TODO: kendi görselini koy -->
-            <img class="mediaBox__img" src="assets/img/2waylogo.png" alt="App preview (placeholder)" />
-          </div>
+        <div class="filter-tabs">
+          <span class="pill active" data-filter="all">All Results</span>
+          <span class="pill" data-filter="native">Native Speakers</span>
+          <span class="pill" data-filter="verified">Verified Courses</span>
+          <span class="pill" data-filter="free">Free Exchange</span>
         </div>
       </div>
     </section>
 
-    <!-- PRICING -->
-    <section class="section">
+    <section class="section searchResultsSection">
       <div class="container">
-        <div class="sectionHead">
-          <h2 class="h2">Pricing</h2>
-          <p class="muted">Launching soon</p>
+        <div class="sectionHead" style="margin-bottom: 24px;">
+          <h2 class="h3">Search Results</h2>
+          <p class="muted" id="searchSummary">Showing all available results.</p>
+        </div>
+
+        <div id="resultsGrid" class="grid grid--3"></div>
+      </div>
+    </section>
+
+    <section class="section filter-section" style="padding-top: 40px; padding-bottom: 20px;">
+      <div class="container">
+        <div class="sectionHead" style="margin-bottom: 30px;">
+          <h2 class="h3">Suggested Language Partners</h2>
         </div>
 
         <div class="grid grid--3">
-          <article class="card">
-            <h3 class="h3">Free Version</h3>
-            <p class="muted">Includes ads. Data Protection. Fixed Interface. Limited match proposals.</p>
-            <div class="card__footer">
-              <span class="tag">Soon</span>
-            </div>
-          </article>
-
-          <article class="card card--accent">
-            <h3 class="h3">Free Trial (New Users Only)</h3>
-            <p class="muted">Includes ads. Data protection. Advanced search filters. Unlimited match proposals.</p>
-            <div class="card__footer">
-              <span class="tag">Soon</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3 class="h3">Premium Version</h3>
-            <p class="muted">Ad-free. Data protection. Progress tracker. Verified Badge. Unlimited match proposals.</p>
-            <div class="card__footer">
-              <span class="tag">Soon</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="section">
-      <div class="container">
-        <div class="sectionHead">
-          <h2 class="h2">What you get</h2>
-          <p class="muted">Real conversations, safe community, smart matching.</p>
-        </div>
-
-        <div class="grid grid--2">
-          <article class="card card--row">
-            <img class="iconImg" src="assets/img/feature-1.png" alt="" />
-            <div>
-              <h3 class="h3">Practice with real people.</h3>
-              <p class="muted">Improve your speaking skills through real conversations with native speakers, not textbooks.</p>
-            </div>
-          </article>
-
-          <article class="card card--row">
-            <img class="iconImg" src="assets/img/feature-2.png" alt="" />
-            <div>
-              <h3 class="h3">Safe &amp; Moderated Community</h3>
-              <p class="muted">Verified profiles, reporting tools, and active moderation to keep conversations respectful and secure.</p>
-            </div>
-          </article>
-        </div>
-
-        <div class="promise">
-          <div class="promise__title">Our Promise</div>
-          <ul class="bullets">
-            <li>Affordable language learning</li>
-            <li>Human connection</li>
-            <li>Safe environment</li>
-            <li>Cultural exchange</li>
-            <li>Sustainable &amp; digital</li>
-          </ul>
-        </div>
-
-        <div class="grid grid--3" style="margin-top:18px">
-          <article class="card">
-            <img class="thumb" src="assets/img/thumb-1.png" alt="" />
-            <h3 class="h3">Real Conversations, Real Progress</h3>
-            <p class="muted">Schedule online sessions, practice weekly, and track your language improvement over time.</p>
-          </article>
-
-          <article class="card">
-            <img class="thumb" src="assets/img/thumb-2.png" alt="" />
-            <h3 class="h3">Global Language Community</h3>
-            <p class="muted">Connect with language learners from around the world. Practice with native speakers, share cultures, and improve together.</p>
-          </article>
-
-          <article class="card">
-            <img class="thumb" src="assets/img/thumb-3.png" alt="" />
-            <h3 class="h3">Smart Language Matching</h3>
-            <p class="muted">Get matched with the right partner based on your language level, learning goals, and availability.</p>
-          </article>
-
-          <article class="card">
-            <img class="thumb" src="assets/img/thumb-4.png" alt="" />
-            <h3 class="h3">Learn with Native Speakers</h3>
-            <p class="muted">Practice real conversations with native speakers and improve your pronunciation, fluency, and confidence naturally.</p>
-          </article>
-
-          <article class="card">
-            <img class="thumb" src="assets/img/thumb-5.png" alt="" />
-            <h3 class="h3">High-Quality Conversations</h3>
-            <p class="muted">Focus on meaningful discussions, real topics, and practical language use instead of memorizing textbooks.</p>
-          </article>
-
-          <article class="card">
-            <img class="thumb" src="assets/img/thumb-6.png" alt="" />
-            <h3 class="h3">Practice Anytime, Anywhere</h3>
-            <p class="muted">Join language exchange sessions from any device, wherever you are. Flexible scheduling that fits your daily routine.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="section" id="how">
-      <div class="container">
-        <div class="sectionHead">
-          <h2 class="h2">How 2Way Works</h2>
-          <p class="muted">2WAY connects language learners who want to practice with native speakers. You teach your language and learn another through flexible online sessions.</p>
-        </div>
-
-        <div class="grid grid--5 steps">
-          <div class="step card">
-            <div class="step__num">1</div>
-            <h3 class="h3">Create Your Profile</h3>
-            <p class="muted">Add your native language, the language you want to learn, and your availability.</p>
-          </div>
-
-          <div class="step card">
-            <div class="step__num">2</div>
-            <h3 class="h3">Get Matched</h3>
-            <p class="muted">Our system matches you with native speakers based on your level and learning goals.</p>
-          </div>
-
-          <div class="step card">
-            <div class="step__num">3</div>
-            <h3 class="h3">Schedule a Session</h3>
-            <p class="muted">Choose a time that works for both of you and start practicing online.</p>
-          </div>
-
-          <div class="step card">
-            <div class="step__num">4</div>
-            <h3 class="h3">Exchange Languages</h3>
-            <p class="muted">Teach your language, learn another, and improve through real conversations.</p>
-          </div>
-
-          <div class="step card">
-            <div class="step__num">5</div>
-            <h3 class="h3">Track Your Progress</h3>
-            <p class="muted">See your improvement over time and build confidence with every session.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY -->
-    <section class="section">
-      <div class="container">
-        <div class="why card card--glass">
-          <h2 class="h2">WHY 2WAY?</h2>
-          <p class="muted">Real language learning. Real people. Real impact.</p>
-
-          <div class="why__grid">
-            <div>
-              <h3 class="h3">Language Exchange, Made Simple</h3>
-              <p class="muted">Practice real conversations with native speakers through skill exchange.</p>
-              <div class="tagRow">
-                <span class="tag">Launching soon</span>
-                <span class="tag">Coming Soon</span>
+          <article class="card filter-item" data-category="native">
+            <div class="card-header">
+              <img src="https://ui-avatars.com/api/?name=Maria+G&background=random" class="user-avatar" alt="Maria G." />
+              <div>
+                <h3 class="h3" style="margin: 0; font-size: 1.2rem;">Maria G.</h3>
+                <span class="muted small">Madrid, Spain</span>
               </div>
             </div>
+            <p style="margin-bottom: 5px;"><strong>Native:</strong> Spanish</p>
+            <p style="margin-bottom: 20px;"><strong>Learning:</strong> English (Intermediate)</p>
+            <div class="card__footer">
+              <button class="btn btn--primary" style="width: 100%; padding: 10px;">Send Request</button>
+            </div>
+          </article>
 
-            <ul class="bullets">
-              <li>Learn with native speakers</li>
-              <li>Smart language matching by level &amp; goals</li>
-              <li>Safe and moderated community</li>
-              <li>Flexible online sessions</li>
-              <li>Low-cost access (no expensive courses)</li>
-            </ul>
-          </div>
+          <article class="card filter-item" data-category="native">
+            <div class="card-header">
+              <img src="https://ui-avatars.com/api/?name=Kenji+T&background=random" class="user-avatar" alt="Kenji T." />
+              <div>
+                <h3 class="h3" style="margin: 0; font-size: 1.2rem;">Kenji T.</h3>
+                <span class="muted small">Tokyo, Japan</span>
+              </div>
+            </div>
+            <p style="margin-bottom: 5px;"><strong>Native:</strong> Japanese</p>
+            <p style="margin-bottom: 20px;"><strong>Learning:</strong> Turkish (Beginner)</p>
+            <div class="card__footer">
+              <button class="btn btn--primary" style="width: 100%; padding: 10px;">Send Request</button>
+            </div>
+          </article>
+
+          <article class="card filter-item" data-category="native">
+            <div class="card-header">
+              <img src="https://ui-avatars.com/api/?name=Sarah+M&background=random" class="user-avatar" alt="Sarah M." />
+              <div>
+                <h3 class="h3" style="margin: 0; font-size: 1.2rem;">Sarah M. <span style="color: gold;" title="Verified">★</span></h3>
+                <span class="muted small">London, UK</span>
+              </div>
+            </div>
+            <p style="margin-bottom: 5px;"><strong>Native:</strong> English</p>
+            <p style="margin-bottom: 20px;"><strong>Learning:</strong> French (Advanced)</p>
+            <div class="card__footer">
+              <button class="btn btn--primary" style="width: 100%; padding: 10px;">Send Request</button>
+            </div>
+          </article>
         </div>
       </div>
     </section>
+
+    <section class="section filter-section" style="padding-top: 20px;">
+      <div class="container">
+        <div class="sectionHead" style="margin-bottom: 30px;">
+          <h2 class="h3">Popular Courses & Groups</h2>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="card card--glass filter-item" data-category="free">
+            <h3 class="h3">English-Spanish Weekly Swap</h3>
+            <p class="muted" style="margin-bottom: 15px;">Casual speaking group • 4/6 Members joined</p>
+            <div class="tagRow" style="margin-bottom: 20px;">
+              <span class="tag">Intermediate</span>
+              <span class="tag">Free</span>
+            </div>
+            <div class="card__footer">
+              <button class="btn btn--ghost" style="width: 100%; padding: 10px;">View Group</button>
+            </div>
+          </article>
+
+          <article class="card card--glass filter-item" data-category="verified">
+            <h3 class="h3">Business Turkish 101</h3>
+            <p class="muted" style="margin-bottom: 15px;">Structured course by Verified Tutor • Starts Tomorrow</p>
+            <div class="tagRow" style="margin-bottom: 20px;">
+              <span class="tag">Beginner</span>
+              <span class="tag" style="background: #ffd700; color: #000;">Premium</span>
+            </div>
+            <div class="card__footer">
+              <button class="btn btn--ghost" style="width: 100%; padding: 10px;">View Details</button>
+            </div>
+          </article>
+          
+          <article class="card card--glass filter-item" data-category="verified">
+            <h3 class="h3">IELTS Speaking Practice</h3>
+            <p class="muted" style="margin-bottom: 15px;">1-on-1 Intensive prep • Flexible Schedule</p>
+            <div class="tagRow" style="margin-bottom: 20px;">
+              <span class="tag">Advanced</span>
+              <span class="tag">Tutor</span>
+            </div>
+            <div class="card__footer">
+              <button class="btn btn--ghost" style="width: 100%; padding: 10px;">View Details</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -240,37 +260,468 @@
         <h3 class="h3">About 2WAY</h3>
         <p class="muted">
           2WAY is a language exchange platform that connects learners with native speakers through real conversations.
-          Our mission is to make language learning affordable, inclusive, and accessible for everyone.
         </p>
       </div>
-
       <div>
         <h3 class="h3">Platform</h3>
         <ul class="footerLinks">
-          <li><a href="#how">How 2WAY Works</a></li>
-          <li><a href="#">Languages</a></li>
-          <li><a href="#">Safety &amp; Community</a></li>
-          <li><a href="#">Pricing (Coming Soon)</a></li>
+          <li><a href="index.html#how">How 2WAY Works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
         </ul>
-      </div>
-
-      <div>
-        <h3 class="h3">Stay Connected</h3>
-        <p class="muted">Follow our journey and be the first to know when 2WAY launches.</p>
-        <a class="btn btn--primary" href="#">Follow Updates</a>
-      </div>
-    </div>
-
-    <div class="container footer__bottom">
-      <span class="muted small">A student-led digital learning project.</span>
-      <div class="social">
-        <a href="#" aria-label="Facebook">Facebook</a>
-        <a href="#" aria-label="Twitter">Twitter</a>
-        <a href="#" aria-label="Instagram">Instagram</a>
       </div>
     </div>
   </footer>
 
   <script src="assets/js/main.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-tabs .pill');
+    const resultsGrid = document.getElementById('resultsGrid');
+    const searchForm = document.getElementById('searchForm');
+    const searchType = document.getElementById('searchType');
+    const searchInput = document.getElementById('searchInput');
+    const searchSummary = document.getElementById('searchSummary');
+
+    const resultSets = {
+      all: [
+        {
+          type: "language",
+          title: "Spanish Conversation Practice",
+          subtitle: "Language Program",
+          desc: "Beginner to intermediate Spanish speaking practice with guided topics.",
+          tag: "Spanish",
+          cta: "Explore Language"
+        },
+        {
+          type: "language",
+          title: "English for Daily Life",
+          subtitle: "Language Program",
+          desc: "Build practical English vocabulary and confidence for everyday conversations.",
+          tag: "English",
+          cta: "Explore Language"
+        },
+        {
+          type: "language",
+          title: "Turkish Basics",
+          subtitle: "Language Program",
+          desc: "Start learning Turkish with common phrases and simple grammar.",
+          tag: "Turkish",
+          cta: "Explore Language"
+        },
+        {
+          type: "user",
+          title: "Maria G.",
+          subtitle: "User · Madrid, Spain",
+          desc: "Native Spanish speaker learning English. Loves cultural exchange.",
+          tag: "Spanish / English",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Kenji T.",
+          subtitle: "User · Tokyo, Japan",
+          desc: "Native Japanese speaker learning Turkish. Interested in weekly practice.",
+          tag: "Japanese / Turkish",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Sarah M.",
+          subtitle: "User · London, UK",
+          desc: "Native English speaker learning French. Open to advanced conversation.",
+          tag: "English / French",
+          cta: "Send Request"
+        },
+        {
+          type: "course",
+          title: "Beginner English Course",
+          subtitle: "Course",
+          desc: "A structured beginner-friendly English course with grammar and speaking lessons.",
+          tag: "English",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "Business Spanish Course",
+          subtitle: "Course",
+          desc: "Learn Spanish for meetings, email writing, and workplace communication.",
+          tag: "Spanish",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "French Speaking Club",
+          subtitle: "Course / Group",
+          desc: "Weekly speaking sessions for learners who want more fluency.",
+          tag: "French",
+          cta: "View Group"
+        },
+        {
+          type: "course",
+          title: "German Starter Pack",
+          subtitle: "Course",
+          desc: "Learn the basics of German pronunciation, greetings, and daily vocabulary.",
+          tag: "German",
+          cta: "View Course"
+        }
+      ],
+
+      native: [
+        {
+          type: "user",
+          title: "Maria G.",
+          subtitle: "Native Speaker · Madrid, Spain",
+          desc: "Native Spanish speaker learning English. Enjoys beginner-friendly conversation.",
+          tag: "Spanish / English",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Kenji T.",
+          subtitle: "Native Speaker · Tokyo, Japan",
+          desc: "Native Japanese speaker looking for Turkish and English partners.",
+          tag: "Japanese / Turkish",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Sarah M.",
+          subtitle: "Native Speaker · London, UK",
+          desc: "Native English speaker interested in French exchange sessions.",
+          tag: "English / French",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Ali K.",
+          subtitle: "Native Speaker · Istanbul, Turkey",
+          desc: "Native Turkish speaker helping learners improve speaking confidence.",
+          tag: "Turkish / German",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Lina R.",
+          subtitle: "Native Speaker · Paris, France",
+          desc: "Native French speaker available for weekly language exchange.",
+          tag: "French / English",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Diego V.",
+          subtitle: "Native Speaker · Barcelona, Spain",
+          desc: "Native Spanish speaker focused on informal speaking practice.",
+          tag: "Spanish / Italian",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Hanna S.",
+          subtitle: "Native Speaker · Berlin, Germany",
+          desc: "Native German speaker who enjoys grammar-focused language sessions.",
+          tag: "German / English",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Yuki N.",
+          subtitle: "Native Speaker · Osaka, Japan",
+          desc: "Native Japanese speaker open to beginner and intermediate exchanges.",
+          tag: "Japanese / English",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Omar T.",
+          subtitle: "Native Speaker · Cairo, Egypt",
+          desc: "Native Arabic speaker looking for English conversation partners.",
+          tag: "Arabic / English",
+          cta: "Send Request"
+        },
+        {
+          type: "user",
+          title: "Sofia P.",
+          subtitle: "Native Speaker · Rome, Italy",
+          desc: "Native Italian speaker with flexible schedule for weekly chats.",
+          tag: "Italian / Spanish",
+          cta: "Send Request"
+        }
+      ],
+
+      verified: [
+        {
+          type: "course",
+          title: "Business Turkish 101",
+          subtitle: "Verified Course",
+          desc: "Structured course by a verified tutor for workplace Turkish.",
+          tag: "Turkish",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "IELTS Speaking Practice",
+          subtitle: "Verified Course",
+          desc: "Intensive speaking prep with live tutor feedback.",
+          tag: "English Exam Prep",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "Verified Beginner French",
+          subtitle: "Verified Course",
+          desc: "A beginner French course focused on pronunciation and everyday speech.",
+          tag: "French",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "English Grammar Masterclass",
+          subtitle: "Verified Course",
+          desc: "Grammar lessons with exercises, explanations, and quizzes.",
+          tag: "English",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "German for Professionals",
+          subtitle: "Verified Course",
+          desc: "Professional German for meetings, interviews, and formal emails.",
+          tag: "German",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "Spanish Listening Intensive",
+          subtitle: "Verified Course",
+          desc: "Train listening skills using real-life conversations and guided tasks.",
+          tag: "Spanish",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "Japanese Writing Workshop",
+          subtitle: "Verified Course",
+          desc: "Practice hiragana, katakana, and basic sentence writing.",
+          tag: "Japanese",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "Advanced French Fluency",
+          subtitle: "Verified Course",
+          desc: "Advanced sessions for learners aiming at natural conversation.",
+          tag: "French",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "Arabic Reading Foundations",
+          subtitle: "Verified Course",
+          desc: "Learn to read Arabic script with step-by-step guidance.",
+          tag: "Arabic",
+          cta: "View Course"
+        },
+        {
+          type: "course",
+          title: "Certified English Tutor Pack",
+          subtitle: "Verified Course",
+          desc: "Weekly tutoring sessions with certified English instructors.",
+          tag: "English",
+          cta: "View Course"
+        }
+      ],
+
+      free: [
+        {
+          type: "group",
+          title: "English-Spanish Weekly Swap",
+          subtitle: "Free Exchange Group",
+          desc: "Casual weekly exchange for English and Spanish learners.",
+          tag: "Free / Intermediate",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "French Coffee Chat",
+          subtitle: "Free Exchange Group",
+          desc: "Relaxed French speaking practice in a casual online setting.",
+          tag: "Free / French",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "Turkish Beginner Meetup",
+          subtitle: "Free Exchange Group",
+          desc: "Beginner learners practice Turkish phrases and daily conversations.",
+          tag: "Free / Turkish",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "German Speaking Circle",
+          subtitle: "Free Exchange Group",
+          desc: "Small speaking circle for intermediate German learners.",
+          tag: "Free / German",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "Japanese Listening Club",
+          subtitle: "Free Exchange Group",
+          desc: "Listen to short dialogues and discuss them with other learners.",
+          tag: "Free / Japanese",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "Arabic Conversation Table",
+          subtitle: "Free Exchange Group",
+          desc: "Meet Arabic learners and practice simple conversation together.",
+          tag: "Free / Arabic",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "Italian Sunday Practice",
+          subtitle: "Free Exchange Group",
+          desc: "A friendly Sunday group for Italian speaking practice.",
+          tag: "Free / Italian",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "Beginner English Support Room",
+          subtitle: "Free Exchange Group",
+          desc: "Supportive group for beginners to build English confidence.",
+          tag: "Free / English",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "Global Language Exchange Hub",
+          subtitle: "Free Exchange Group",
+          desc: "Meet learners from different countries and practice multiple languages.",
+          tag: "Free / Multi-language",
+          cta: "Join Group"
+        },
+        {
+          type: "group",
+          title: "Spanish Pronunciation Lab",
+          subtitle: "Free Exchange Group",
+          desc: "Work on clear Spanish pronunciation with peers and native speakers.",
+          tag: "Free / Spanish",
+          cta: "Join Group"
+        }
+      ]
+    };
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderResults(items, summaryText) {
+      if (!items.length) {
+        resultsGrid.innerHTML = `
+          <article class="card card--glass search-empty" style="grid-column:1/-1;">
+            <h3 class="h3">No results found</h3>
+            <p class="muted">Try a different keyword or change the search type.</p>
+          </article>
+        `;
+        searchSummary.textContent = summaryText || "No results available.";
+        return;
+      }
+
+      resultsGrid.innerHTML = items.map(item => `
+        <article class="card card--glass">
+          <div class="result-meta">
+            <span class="result-type">${escapeHtml(item.type)}</span>
+          </div>
+          <h3 class="h3">${escapeHtml(item.title)}</h3>
+          <p class="muted" style="margin-bottom: 12px;">${escapeHtml(item.subtitle)}</p>
+          <p style="margin-bottom: 18px;">${escapeHtml(item.desc)}</p>
+          <div class="tagRow" style="margin-bottom: 18px;">
+            <span class="tag">${escapeHtml(item.tag)}</span>
+          </div>
+          <div class="card__footer">
+            <button class="btn btn--primary" style="width: 100%; padding: 10px;">
+              ${escapeHtml(item.cta)}
+            </button>
+          </div>
+        </article>
+      `).join("");
+
+      searchSummary.textContent = summaryText;
+    }
+
+    function getActiveFilter() {
+      const active = document.querySelector('.filter-tabs .pill.active');
+      return active ? active.getAttribute('data-filter') : 'all';
+    }
+
+    function filterBySearch(items, query, type) {
+      return items.filter(item => {
+        const matchesType = type === 'all' || item.type === type;
+        const haystack = [
+          item.title,
+          item.subtitle,
+          item.desc,
+          item.tag,
+          item.type
+        ].join(' ').toLowerCase();
+
+        const matchesQuery = !query || haystack.includes(query);
+        return matchesType && matchesQuery;
+      });
+    }
+
+    function runSearch() {
+      const activeFilter = getActiveFilter();
+      const query = searchInput.value.trim().toLowerCase();
+      const type = searchType.value;
+      const baseData = resultSets[activeFilter] || resultSets.all;
+      const filtered = filterBySearch(baseData, query, type);
+
+      let summary = "";
+      if (query) {
+        summary = `Showing ${filtered.length} result(s) for "${searchInput.value.trim()}" in ${activeFilter === 'all' ? 'all results' : activeFilter.replace('-', ' ')}.`;
+      } else {
+        summary = `Showing ${filtered.length} ${activeFilter === 'all' ? 'all results' : activeFilter.replace('-', ' ')} item(s).`;
+      }
+
+      renderResults(filtered, summary);
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        runSearch();
+      });
+    });
+
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      runSearch();
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        runSearch();
+      }
+    });
+
+    searchType.addEventListener('change', runSearch);
+
+    renderResults(resultSets.all, "Showing 10 all results item(s).");
+  });
+</script>
 </body>
 </html>

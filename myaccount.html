@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2WAY Learning - My Account</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body {
+      color: #f5f7ff;
+    }
+
+    .accountGrid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 980px) {
+      .accountGrid {
+        grid-template-columns: 360px 1fr;
+      }
+    }
+
+    .accountHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .accountHeader__title {
+      margin: 0;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .card,
+    .card--glass {
+      background: rgba(10, 16, 40, 0.82) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .h2,
+    .h3,
+    .sectionTitle h2,
+    .sectionTitle h3 {
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    p,
+    span,
+    a,
+    li,
+    label {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .muted {
+      color: rgba(255, 255, 255, 0.82) !important;
+    }
+
+    .muted.small {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.78) !important;
+    }
+
+    .subtleLine {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.18);
+      margin: 16px 0;
+    }
+
+    .profileTop {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .avatarWrap {
+      width: 96px;
+      height: 96px;
+      border-radius: 999px;
+      overflow: hidden;
+      flex: 0 0 auto;
+      position: relative;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .avatarWrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatarFallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 24px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .avatarActions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .fileInput {
+      display: none;
+    }
+
+    .kpiRow {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 720px) {
+      .kpiRow {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .kpi {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 16px;
+    }
+
+    .kpi .muted {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-size: 14px;
+    }
+
+    .kpi .kpiVal {
+      color: #ffffff;
+      font-size: 24px;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .formGrid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 720px) {
+      .formGrid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field label {
+      font-weight: 700;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      outline: none;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .pillRow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .pillSmall {
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.10);
+      font-size: 12px;
+      color: #fff;
+    }
+
+    .sectionTitle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .danger {
+      border-color: rgba(255, 90, 90, 0.45) !important;
+    } 
+    .btn {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #f5f7ff !important;
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+#logoutBtn,
+#manageBillingBtn,
+#resetBtn,
+#removePhotoBtn {
+  color: #f5f7ff !important;
+}
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">2WAY</a>
+      <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="nav" data-nav>
+        <a class="nav__link" href="index.html">Home</a>
+        <a class="nav__link" href="about.html">About</a>
+        <a class="nav__link" href="contact.html">Contact</a>
+        <a class="nav__link" href="learn.html">Learn</a>
+        <a class="btn btn--primary navCta" href="myaccount.html">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+
+        <div class="accountHeader">
+          <div>
+            <span class="pill">Account</span>
+            <h1 class="h2 accountHeader__title">My Account</h1>
+            <p class="muted" style="margin:6px 0 0">Manage your profile, plan, and preferences.</p>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn btn--ghost" href="learn.html">Back to Learn</a>
+            <button class="btn btn--primary" id="saveBtn" type="button">Save changes</button>
+          </div>
+        </div>
+
+        <div class="accountGrid" style="margin-top:16px">
+
+          <aside class="card card--glass">
+            <div class="profileTop">
+              <div class="avatarWrap card" style="padding:0">
+                <img id="avatarImg" src="assets/img/avatar-placeholder.png" alt="Profile photo" onerror="this.style.display='none';document.getElementById('avatarFallback').style.display='flex';" />
+                <div id="avatarFallback" class="avatarFallback" style="display:none;">
+                  <span id="initials">U</span>
+                </div>
+              </div>
+              <div>
+                <h3 class="h3" id="displayName" style="margin:0">Your Name</h3>
+                <p class="muted" id="displayEmail" style="margin:6px 0 0">you@example.com</p>
+                <div class="pillRow">
+                  <span class="pillSmall" id="planPill">Plan: Free</span>
+                  <span class="pillSmall" id="statusPill">Status: Active</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="avatarActions">
+              <label class="btn btn--primary" for="avatarInput" style="cursor:pointer">Upload photo</label>
+              <input class="fileInput" id="avatarInput" type="file" accept="image/*" />
+              <button class="btn btn--ghost" id="removePhotoBtn" type="button">Remove</button>
+            </div>
+
+            <div class="subtleLine"></div>
+
+            <div class="kpiRow">
+              <div class="card kpi">
+                <p class="muted">Matches</p>
+                <div class="kpiVal" id="kpiMatches">0</div>
+              </div>
+              <div class="card kpi">
+                <p class="muted">Progress</p>
+                <div class="kpiVal" id="kpiProgress">0%</div>
+              </div>
+              <div class="card kpi">
+                <p class="muted">Member since</p>
+                <div class="kpiVal" id="kpiSince">—</div>
+              </div>
+            </div>
+
+            <div class="subtleLine"></div>
+
+            <div class="sectionTitle">
+              <h3 class="h3" style="margin:0">Quick actions</h3>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+              <a class="btn btn--ghost" href="pricing.html">Change plan</a>
+              <a class="btn btn--ghost" href="contact.html">Support</a>
+              <button class="btn btn--ghost danger" id="logoutBtn" type="button">Log out</button>
+            </div>
+
+            <p class="muted small" style="margin-top:12px">
+              Tip: This page stores info locally for now (demo). Connect it to your backend later.
+            </p>
+          </aside>
+
+          <section class="card">
+            <div class="sectionTitle">
+              <h2 class="h3" style="margin:0">Profile details</h2>
+              <span class="muted small">Public info</span>
+            </div>
+
+            <div class="subtleLine"></div>
+
+            <div class="formGrid">
+              <div class="field">
+                <label for="nameInput">Full name</label>
+                <input id="nameInput" type="text" placeholder="e.g., Alex Johnson" />
+              </div>
+
+              <div class="field">
+                <label for="emailInput">Email</label>
+                <input id="emailInput" type="email" placeholder="e.g., you@example.com" />
+              </div>
+
+              <div class="field">
+                <label for="countryInput">Country</label>
+                <input id="countryInput" type="text" placeholder="e.g., United Kingdom" />
+              </div>
+
+              <div class="field">
+                <label for="timezoneInput">Timezone</label>
+                <select id="timezoneInput">
+                  <option value="">Select…</option>
+                  <option value="Europe/London">Europe/London</option>
+                  <option value="Europe/Istanbul">Europe/Istanbul</option>
+                  <option value="Europe/Berlin">Europe/Berlin</option>
+                  <option value="America/New_York">America/New_York</option>
+                </select>
+              </div>
+
+              <div class="field" style="grid-column:1/-1">
+                <label for="bioInput">Bio</label>
+                <textarea id="bioInput" placeholder="Tell others about yourself…"></textarea>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+              <button class="btn btn--primary" id="saveBtn2" type="button">Save changes</button>
+              <button class="btn btn--ghost" id="resetBtn" type="button">Reset</button>
+            </div>
+          </section>
+
+          <section class="card card--glass">
+            <div class="sectionTitle">
+              <h2 class="h3" style="margin:0">Preferences</h2>
+              <span class="muted small">Private settings</span>
+            </div>
+
+            <div class="subtleLine"></div>
+
+            <div class="formGrid">
+              <div class="field">
+                <label for="languageInput">Language</label>
+                <select id="languageInput">
+                  <option value="en">English</option>
+                  <option value="tr">Türkçe</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="visibilityInput">Profile visibility</label>
+                <select id="visibilityInput">
+                  <option value="public">Public</option>
+                  <option value="private">Private</option>
+                  <option value="connections">Connections only</option>
+                </select>
+              </div>
+
+              <div class="field" style="grid-column:1/-1">
+                <label for="goalsInput">Learning goals</label>
+                <textarea id="goalsInput" placeholder="e.g., Improve speaking, build vocabulary, practice daily…"></textarea>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="sectionTitle">
+              <h2 class="h3" style="margin:0">Billing</h2>
+              <span class="muted small">Plan & payments</span>
+            </div>
+
+            <div class="subtleLine"></div>
+
+            <p class="muted" style="margin-top:0">
+              Current plan: <strong id="billingPlanText">Free</strong>
+            </p>
+            <p class="muted">
+              Premium is billed at <strong>£3.99/month</strong>. You can upgrade from the pricing page.
+            </p>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+              <a class="btn btn--primary" href="pricing.html">Upgrade / change plan</a>
+              <button class="btn btn--ghost" id="manageBillingBtn" type="button" title="Connect Stripe Customer Portal later">Manage billing</button>
+            </div>
+
+            <div class="subtleLine"></div>
+
+            <p class="muted small" style="margin:0">
+              Note: Billing management is a placeholder until you connect Stripe Customer Portal or webhooks.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bottom">
+      <span class="muted small">© 2WAY Learning</span>
+      <div class="social">
+        <a href="https://instagram.com/2waylearning" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    const STORAGE_KEY = "twoWayAccount";
+
+    function getInitials(name) {
+      const n = (name || "").trim();
+      if (!n) return "U";
+      const parts = n.split(/\s+/).slice(0, 2);
+      return parts.map(p => p[0].toUpperCase()).join("");
+    }
+
+    function readProfile() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      } catch {
+        return {};
+      }
+    }
+
+    function writeProfile(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function setText(id, value, fallback = "—") {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value ? value : fallback;
+    }
+
+    function getPlanFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("plan");
+    }
+
+    function normalizePlan(plan) {
+      if (!plan) return null;
+      const p = plan.toLowerCase();
+      if (["free", "trial", "premium"].includes(p)) return p;
+      return null;
+    }
+
+    function formatPlan(p) {
+      if (p === "premium") return "Premium (£3.99/month)";
+      if (p === "trial") return "Trial";
+      return "Free";
+    }
+
+    function applyProfile(profile) {
+      document.getElementById("nameInput").value = profile.name || "";
+      document.getElementById("emailInput").value = profile.email || "";
+      document.getElementById("countryInput").value = profile.country || "";
+      document.getElementById("timezoneInput").value = profile.timezone || "";
+      document.getElementById("bioInput").value = profile.bio || "";
+      document.getElementById("languageInput").value = profile.language || "en";
+      document.getElementById("visibilityInput").value = profile.visibility || "public";
+      document.getElementById("goalsInput").value = profile.goals || "";
+
+      setText("displayName", profile.name || "Your Name", "Your Name");
+      setText("displayEmail", profile.email || "you@example.com", "you@example.com");
+      setText("initials", getInitials(profile.name));
+
+      const planLabel = formatPlan(profile.plan || "free");
+      setText("planPill", `Plan: ${planLabel}`, `Plan: ${planLabel}`);
+      setText("billingPlanText", planLabel, planLabel);
+
+      setText("kpiMatches", profile.matches ?? 0, 0);
+      setText("kpiProgress", (profile.progress ?? 0) + "%", "0%");
+      setText("kpiSince", profile.memberSince || "—", "—");
+
+      const avatarImg = document.getElementById("avatarImg");
+      const avatarFallback = document.getElementById("avatarFallback");
+      if (profile.avatarDataUrl) {
+        avatarImg.src = profile.avatarDataUrl;
+        avatarImg.style.display = "block";
+        avatarFallback.style.display = "none";
+      } else {
+        avatarImg.src = "assets/img/avatar-placeholder.png";
+        avatarImg.style.display = "block";
+      }
+    }
+
+    function collectProfile(existing) {
+      const profile = { ...(existing || {}) };
+
+      profile.name = document.getElementById("nameInput").value.trim();
+      profile.email = document.getElementById("emailInput").value.trim();
+      profile.country = document.getElementById("countryInput").value.trim();
+      profile.timezone = document.getElementById("timezoneInput").value;
+      profile.bio = document.getElementById("bioInput").value.trim();
+      profile.language = document.getElementById("languageInput").value;
+      profile.visibility = document.getElementById("visibilityInput").value;
+      profile.goals = document.getElementById("goalsInput").value.trim();
+
+      if (profile.matches == null) profile.matches = 0;
+      if (profile.progress == null) profile.progress = 0;
+      if (!profile.memberSince) {
+        const d = new Date();
+        profile.memberSince = d.toLocaleDateString(undefined, { year: "numeric", month: "short" });
+      }
+
+      return profile;
+    }
+
+    function saveProfile() {
+      const existing = readProfile();
+      const updated = collectProfile(existing);
+      writeProfile(updated);
+      applyProfile(updated);
+    }
+
+    function resetProfile() {
+      localStorage.removeItem(STORAGE_KEY);
+      init();
+    }
+
+    document.getElementById("avatarInput").addEventListener("change", (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith("image/")) {
+        alert("Please select an image file.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const profile = readProfile();
+        profile.avatarDataUrl = reader.result;
+        writeProfile(profile);
+        applyProfile(profile);
+      };
+      reader.readAsDataURL(file);
+    });
+
+    document.getElementById("removePhotoBtn").addEventListener("click", () => {
+      const profile = readProfile();
+      delete profile.avatarDataUrl;
+      writeProfile(profile);
+      applyProfile(profile);
+    });
+
+    document.getElementById("saveBtn").addEventListener("click", saveProfile);
+    document.getElementById("saveBtn2").addEventListener("click", saveProfile);
+    document.getElementById("resetBtn").addEventListener("click", resetProfile);
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem(STORAGE_KEY);
+      window.location.href = "auth.html";
+    });
+
+    document.getElementById("manageBillingBtn").addEventListener("click", () => {
+      alert("Billing management is a placeholder. Connect Stripe Customer Portal later.");
+    });
+
+    function init() {
+      const profile = readProfile();
+      const planFromQuery = normalizePlan(getPlanFromQuery());
+      if (planFromQuery) profile.plan = planFromQuery;
+      if (!profile.plan) profile.plan = "free";
+      writeProfile(profile);
+      applyProfile(profile);
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -515,6 +515,126 @@ html {
   }
 }
 
+/* Koyu temaya uygun arama bölümü */
+    .search-section {
+      padding: 40px 0 20px 0;
+      /* Açık arkaplanı kaldırdık, genel koyu temayla bütünleşecek */
+      background: transparent; 
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Başlığı açıkça okunabilir beyaz yapıyoruz */
+    .search-section .h2 {
+      color: #ffffff !important;
+    }
+
+    .hero-search-box {
+      display: flex;
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* Koyu temaya uygun daha derin gölge */
+      margin: 0 auto;
+      max-width: 600px;
+      gap: 10px;
+      border: none;
+    }
+
+    .hero-search-box select, .hero-search-box input {
+      border: none;
+      padding: 10px;
+      background: transparent;
+      outline: none;
+      font-size: 1rem;
+      color: #333; /* İç yazılar koyu gri */
+    }
+
+    .hero-search-box select {
+      border-right: 1px solid #ddd;
+      color: #555;
+    }
+
+    .hero-search-box input {
+      flex: 1;
+    }
+
+    .hero-search-box button {
+      border-radius: 50px;
+      padding: 10px 25px;
+      background-color: #6320ee; /* Mor arama butonu */
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Koyu Temaya Uygun Filtre Butonları */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tabs .pill {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      user-select: none;
+      color: #a0a0b0; /* Okunabilir açık gri */
+      background-color: rgba(255, 255, 255, 0.08); /* Hafif transparan buton arka planı */
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .filter-tabs .pill:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    /* Seçili olan butonun rengini arama butonuyla uyumlu yapıyoruz */
+    .filter-tabs .pill.active {
+      background-color: #6320ee; 
+      color: #ffffff;
+      border-color: #6320ee;
+      transform: scale(1.05);
+    }
+
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #ddd;
+      object-fit: cover;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .hidden-card {
+      display: none !important;
+    }
+    
+    @media (max-width: 600px) {
+      .hero-search-box {
+        flex-direction: column;
+        border-radius: 12px;
+      }
+      .hero-search-box select {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+      }
+      .hero-search-box button {
+        border-radius: 8px;
+        margin-top: 8px;
+      }
+    }
+
 .planTop {
   display: flex;
   align-items: flex-start;
