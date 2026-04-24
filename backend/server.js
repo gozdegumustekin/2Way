@@ -6,7 +6,14 @@ const path = require("path");
 const app = express();
 app.use(cors({ origin: process.env.PUBLIC_URL || "http://localhost:4242" }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "..")));
+
+const staticDir = path.resolve(__dirname, "..");
+console.log("Static dir:", staticDir);
+app.use(express.static(staticDir));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(staticDir, "index.html"));
+});
 
 // ENV'lerden okunur
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
