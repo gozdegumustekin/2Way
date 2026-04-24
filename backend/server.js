@@ -30,7 +30,7 @@ const stripe = new Stripe(stripeSecretKey);
 app.post("/create-checkout-session", async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
-      mode: "payment",
+      mode: "subscription",
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${publicUrl}/success.html`,
       cancel_url: `${publicUrl}/payment.html?canceled=1`
