@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const Stripe = require("stripe");
+const path = require("path");
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: process.env.PUBLIC_URL || "http://localhost:4242" }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..")));
 
 // ENV'lerden okunur
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
