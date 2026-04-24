@@ -137,6 +137,7 @@
           <span class="pill" data-filter="verified">Verified Courses</span>
           <span class="pill" data-filter="free">Free Exchange</span>
         </div>
+        <div id="premiumStatus" style="margin-top:16px;"></div>
       </div>
     </section>
 
@@ -276,12 +277,36 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const isPremium = localStorage.getItem('isPremium') === 'true';
+
+    const premiumStatus = document.getElementById('premiumStatus');
+    if (isPremium) {
+      premiumStatus.innerHTML = `
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);border-radius:12px;">
+          <span style="color:gold;font-size:18px;">★</span>
+          <span style="font-weight:600;">Premium Active</span>
+          <span class="muted small">— Full access to all partners, courses and groups.</span>
+        </div>`;
+    } else {
+      premiumStatus.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 16px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.35);border-radius:12px;">
+          <span>🔒 <strong>Upgrade to Premium</strong> to send requests and join groups.</span>
+          <a href="payment.html" class="btn btn--primary" style="padding:8px 18px;font-size:14px;white-space:nowrap;">Upgrade £3.99/mo</a>
+        </div>`;
+    }
+
     const filterBtns = document.querySelectorAll('.filter-tabs .pill');
     const resultsGrid = document.getElementById('resultsGrid');
     const searchForm = document.getElementById('searchForm');
     const searchType = document.getElementById('searchType');
     const searchInput = document.getElementById('searchInput');
     const searchSummary = document.getElementById('searchSummary');
+
+    function getListingHref(type) {
+      if (type === 'user') return 'listing-partner.html';
+      if (type === 'group') return 'listing-group.html';
+      return 'listing-course.html';
+    }
 
     const resultSets = {
       all: [
@@ -650,9 +675,10 @@
             <span class="tag">${escapeHtml(item.tag)}</span>
           </div>
           <div class="card__footer">
-            <button class="btn btn--primary" style="width: 100%; padding: 10px;">
-              ${escapeHtml(item.cta)}
-            </button>
+            ${isPremium
+              ? `<a class="btn btn--primary" style="width:100%;padding:10px;display:block;text-align:center;text-decoration:none;" href="${getListingHref(item.type)}">${escapeHtml(item.cta)}</a>`
+              : `<a class="btn btn--primary" style="width:100%;padding:10px;display:block;text-align:center;text-decoration:none;opacity:.7;" href="payment.html">🔒 ${escapeHtml(item.cta)}</a>`
+            }
           </div>
         </article>
       `).join("");
@@ -721,6 +747,23 @@
     searchType.addEventListener('change', runSearch);
 
     renderResults(resultSets.all, "Showing 10 all results item(s).");
+
+    // Static card buttons (Suggested Partners + Popular Courses sections)
+    document.querySelectorAll('.filter-item .btn').forEach(btn => {
+      const card = btn.closest('.filter-item');
+      const category = card ? card.dataset.category : '';
+      if (isPremium) {
+        btn.addEventListener('click', () => {
+          window.location.href = category === 'native' ? 'listing-partner.html'
+            : category === 'free' ? 'listing-group.html'
+            : 'listing-course.html';
+        });
+      } else {
+        btn.innerHTML = '🔒 ' + btn.innerHTML;
+        btn.style.opacity = '0.7';
+        btn.addEventListener('click', () => { window.location.href = 'payment.html'; });
+      }
+    });
   });
 </script>
 </body>

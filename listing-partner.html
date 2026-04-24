@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2WAY – Maria G. · Language Partner</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .profile-hero { display: flex; align-items: center; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+    .profile-avatar { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,215,0,.4); flex-shrink: 0; }
+    .profile-meta p { margin: 4px 0; }
+    .stat-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+    .stat-box { background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 12px; padding: 14px 20px; min-width: 120px; text-align: center; }
+    .stat-box strong { display: block; font-size: 20px; }
+    .availability-tag { display: inline-block; padding: 5px 12px; border-radius: 999px; background: rgba(34,211,238,.1); border: 1px solid rgba(34,211,238,.25); font-size: 13px; margin: 4px 4px 4px 0; }
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+    .request-box { background: rgba(124,58,237,.08); border: 1px solid rgba(124,58,237,.3); border-radius: 16px; padding: 24px; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; text-decoration: none; margin-bottom: 20px; }
+    .back-link:hover { color: var(--text); }
+    .premium-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; background: rgba(255,215,0,.1); border: 1px solid rgba(255,215,0,.3); border-radius: 999px; font-size: 13px; color: gold; }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">2WAY</a>
+      <button class="navToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="nav" data-nav>
+        <a class="nav__link" href="index.html">Home</a>
+        <a class="nav__link is-active" href="learn.html">Learn</a>
+        <a class="nav__link" href="pricing.html">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container" style="max-width:780px;">
+        <a class="back-link" href="learn.html">← Back to Learn</a>
+
+        <div class="card">
+          <div class="profile-hero">
+            <img
+              src="https://ui-avatars.com/api/?name=Maria+G&background=7C3AED&color=fff&size=128"
+              class="profile-avatar"
+              alt="Maria G."
+            />
+            <div class="profile-meta">
+              <h1 class="h2" style="margin-bottom:6px;">Maria G. <span style="color:gold;" title="Verified">★</span></h1>
+              <p class="muted">📍 Madrid, Spain</p>
+              <p style="margin-top:8px;"><span class="premium-badge">★ Premium Member</span></p>
+            </div>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat-box">
+              <strong>Spanish</strong>
+              <span class="muted small">Native</span>
+            </div>
+            <div class="stat-box">
+              <strong>English</strong>
+              <span class="muted small">Learning · B1</span>
+            </div>
+            <div class="stat-box">
+              <strong>47</strong>
+              <span class="muted small">Sessions</span>
+            </div>
+            <div class="stat-box">
+              <strong>4.9 ★</strong>
+              <span class="muted small">Rating</span>
+            </div>
+          </div>
+
+          <hr class="section-divider" />
+
+          <h3 class="h3">About Maria</h3>
+          <p style="margin-bottom:20px;">
+            Hi! I'm Maria, a native Spanish speaker from Madrid. I've been learning English for 3 years
+            and I'm looking for a conversation partner to practise my speaking. I love talking about travel,
+            food, films, and everyday life. I'm patient, friendly, and love cultural exchange — I'll help
+            you with your Spanish while you help me with my English!
+          </p>
+
+          <h3 class="h3">Availability</h3>
+          <div style="margin-bottom:20px;">
+            <span class="availability-tag">Monday evenings (CET)</span>
+            <span class="availability-tag">Wednesday evenings (CET)</span>
+            <span class="availability-tag">Saturday mornings (CET)</span>
+          </div>
+
+          <h3 class="h3">Languages</h3>
+          <div class="tagRow" style="margin-bottom:24px;">
+            <span class="tag">Spanish — Native</span>
+            <span class="tag">English — Intermediate (B1)</span>
+            <span class="tag">French — Basic</span>
+          </div>
+
+          <hr class="section-divider" />
+
+          <div class="request-box" id="requestBox">
+            <h3 class="h3" style="margin-bottom:8px;">Send a Partner Request</h3>
+            <p class="muted" style="margin-bottom:16px;">Introduce yourself and tell Maria why you'd like to practise together.</p>
+            <textarea
+              id="requestMsg"
+              rows="3"
+              placeholder="Hi Maria! I'm learning Spanish and would love to practise with you..."
+              style="width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:12px;color:var(--text);font-size:15px;resize:vertical;"
+            ></textarea>
+            <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+              <button id="sendBtn" class="btn btn--primary">Send Request</button>
+              <a href="learn.html" class="btn btn--ghost">Cancel</a>
+            </div>
+            <p id="sendStatus" class="muted small" style="margin-top:10px;"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bottom">
+      <span class="muted small">© 2WAY Learning</span>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    const isPremium = localStorage.getItem('isPremium') === 'true';
+    if (!isPremium) {
+      document.getElementById('requestBox').innerHTML = `
+        <p style="margin-bottom:14px;">🔒 <strong>Premium required</strong> to send partner requests.</p>
+        <a href="payment.html" class="btn btn--primary">Upgrade £3.99/mo</a>
+      `;
+    } else {
+      document.getElementById('sendBtn').addEventListener('click', () => {
+        const msg = document.getElementById('requestMsg').value.trim();
+        if (!msg) { document.getElementById('sendStatus').textContent = 'Please write a message first.'; return; }
+        document.getElementById('sendBtn').disabled = true;
+        document.getElementById('sendStatus').textContent = '✓ Request sent! Maria will be notified.';
+      });
+    }
+  </script>
+</body>
+</html>
