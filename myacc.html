@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account | 2WAY</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top left,#3f1385 0%,#0a0620 35%,#020617 70%,#031b29 100%);
+color:white;
+min-height:100vh;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 8%;
+border-bottom:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+}
+
+.logo{
+font-size:34px;
+font-weight:900;
+letter-spacing:2px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin-left:30px;
+font-size:18px;
+opacity:.85;
+}
+
+nav a:hover{
+color:#a855f7;
+}
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:50px 8%;
+}
+
+.title{
+font-size:54px;
+font-weight:900;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:18px;
+color:#cfcfcf;
+margin-bottom:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:340px 1fr;
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+border-radius:26px;
+padding:30px;
+backdrop-filter:blur(14px);
+box-shadow:0 10px 40px rgba(0,0,0,.35);
+}
+
+.profile{
+text-align:center;
+}
+
+.avatar{
+width:160px;
+height:160px;
+border-radius:50%;
+margin:auto;
+background:linear-gradient(135deg,#7c3aed,#9333ea,#06b6d4);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:50px;
+font-weight:900;
+overflow:hidden;
+}
+
+.avatar img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none;
+}
+
+.upload{
+margin-top:18px;
+display:inline-block;
+padding:12px 22px;
+border-radius:40px;
+background:linear-gradient(90deg,#7c3aed,#9333ea);
+cursor:pointer;
+font-weight:700;
+}
+
+input[type=file]{
+display:none;
+}
+
+.profile h2{
+margin-top:18px;
+font-size:28px;
+}
+
+.profile p{
+color:#c9c9c9;
+margin-top:8px;
+}
+
+.status{
+margin-top:20px;
+padding:14px;
+border-radius:18px;
+background:rgba(168,85,247,.15);
+color:#e9d5ff;
+font-size:14px;
+}
+
+.section-title{
+font-size:28px;
+font-weight:800;
+margin-bottom:25px;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+margin-bottom:18px;
+}
+
+.field label{
+display:block;
+margin-bottom:8px;
+font-weight:700;
+color:#ddd;
+}
+
+.field input,
+.field textarea,
+.field select{
+width:100%;
+padding:15px;
+border:none;
+outline:none;
+border-radius:16px;
+background:rgba(255,255,255,.06);
+color:white;
+font-size:15px;
+}
+
+textarea{
+resize:vertical;
+min-height:120px;
+}
+
+.chips{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:10px;
+margin-bottom:20px;
+}
+
+.chip{
+padding:12px 18px;
+border-radius:30px;
+background:rgba(255,255,255,.06);
+cursor:pointer;
+transition:.2s;
+}
+
+.chip.active{
+background:linear-gradient(90deg,#7c3aed,#9333ea);
+}
+
+.actions{
+display:flex;
+gap:15px;
+justify-content:flex-end;
+margin-top:25px;
+}
+
+.btn{
+padding:15px 24px;
+border:none;
+border-radius:16px;
+font-weight:800;
+cursor:pointer;
+font-size:15px;
+}
+
+.save{
+background:linear-gradient(90deg,#7c3aed,#9333ea);
+color:white;
+}
+
+.reset{
+background:rgba(255,255,255,.06);
+color:white;
+}
+
+.success{
+margin-top:20px;
+padding:15px;
+border-radius:16px;
+background:rgba(16,185,129,.15);
+color:#6ee7b7;
+display:none;
+}
+
+@media(max-width:950px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.row{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:40px;
+}
+
+header{
+flex-direction:column;
+gap:15px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">2WAY</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="learn.html">Learn</a>
+<a href="pricing.html">Pricing</a>
+<a href="myacc.html">My Account</a>
+</nav>
+</header>
+
+<div class="container">
+
+<div class="title">My Account</div>
+<div class="subtitle">
+Customize your profile, add languages, update your information and connect with better partners.
+</div>
+
+<div class="grid">
+
+<div class="card profile">
+
+<div class="avatar">
+<span id="avatarText">2W</span>
+<img id="avatarImg">
+</div>
+
+<label class="upload">
+Upload Photo
+<input type="file" id="photo" accept="image/*">
+</label>
+
+<h2 id="showName">Your Name</h2>
+<p id="showMail">your@email.com</p>
+
+<div class="status">
+Complete your profile to match with more learners.
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">Edit Profile</div>
+
+<div class="row">
+
+<div class="field">
+<label>Full Name</label>
+<input type="text" id="name">
+</div>
+
+<div class="field">
+<label>Email</label>
+<input type="email" id="email">
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="field">
+<label>Country</label>
+<input type="text" id="country">
+</div>
+
+<div class="field">
+<label>Level</label>
+<select id="level">
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+<option>Native</option>
+</select>
+</div>
+
+</div>
+
+<div class="field">
+<label>About Me</label>
+<textarea id="bio"></textarea>
+</div>
+
+<br>
+
+<label>Languages I Know</label>
+<div class="chips" id="know">
+<div class="chip">English</div>
+<div class="chip">Turkish</div>
+<div class="chip">Spanish</div>
+<div class="chip">German</div>
+<div class="chip">French</div>
+</div>
+
+<label>Languages I Want To Learn</label>
+<div class="chips" id="learn">
+<div class="chip">English</div>
+<div class="chip">Turkish</div>
+<div class="chip">Spanish</div>
+<div class="chip">German</div>
+<div class="chip">French</div>
+</div>
+
+<div class="actions">
+<button class="btn reset" onclick="resetProfile()">Reset</button>
+<button class="btn save" onclick="saveProfile()">Save</button>
+</div>
+
+<div class="success" id="success">
+Profile saved successfully.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function activateChips(id){
+document.querySelectorAll("#"+id+" .chip").forEach(chip=>{
+chip.onclick=()=>chip.classList.toggle("active");
+});
+}
+
+activateChips("know");
+activateChips("learn");
+
+document.getElementById("name").oninput=function(){
+document.getElementById("showName").innerText=this.value || "Your Name";
+document.getElementById("avatarText").innerText=
+this.value ? this.value.substring(0,2).toUpperCase() : "2W";
+}
+
+document.getElementById("email").oninput=function(){
+document.getElementById("showMail").innerText=this.value || "your@email.com";
+}
+
+document.getElementById("photo").onchange=function(){
+let file=this.files[0];
+if(!file) return;
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+document.getElementById("avatarImg").src=e.target.result;
+document.getElementById("avatarImg").style.display="block";
+document.getElementById("avatarText").style.display="none";
+localStorage.setItem("photo",e.target.result);
+}
+
+reader.readAsDataURL(file);
+}
+
+function selected(id){
+let arr=[];
+document.querySelectorAll("#"+id+" .chip.active").forEach(c=>{
+arr.push(c.innerText);
+});
+return arr;
+}
+
+function saveProfile(){
+
+let data={
+name:name.value,
+email:email.value,
+country:country.value,
+level:level.value,
+bio:bio.value,
+know:selected("know"),
+learn:selected("learn")
+};
+
+localStorage.setItem("profile",JSON.stringify(data));
+
+document.getElementById("success").style.display="block";
+
+setTimeout(()=>{
+document.getElementById("success").style.display="none";
+},2500);
+
+}
+
+function loadProfile(){
+
+let data=JSON.parse(localStorage.getItem("profile"));
+if(!data) return;
+
+name.value=data.name || "";
+email.value=data.email || "";
+country.value=data.country || "";
+level.value=data.level || "";
+bio.value=data.bio || "";
+
+showName.innerText=data.name || "Your Name";
+showMail.innerText=data.email || "your@email.com";
+
+if(data.name){
+avatarText.innerText=data.name.substring(0,2).toUpperCase();
+}
+
+document.querySelectorAll("#know .chip").forEach(c=>{
+if(data.know.includes(c.innerText)) c.classList.add("active");
+});
+
+document.querySelectorAll("#learn .chip").forEach(c=>{
+if(data.learn.includes(c.innerText)) c.classList.add("active");
+});
+
+let photo=localStorage.getItem("photo");
+
+if(photo){
+avatarImg.src=photo;
+avatarImg.style.display="block";
+avatarText.style.display="none";
+}
+
+}
+
+function resetProfile(){
+localStorage.clear();
+location.reload();
+}
+
+loadProfile();
+
+</script>
+
+</body>
+</html>
